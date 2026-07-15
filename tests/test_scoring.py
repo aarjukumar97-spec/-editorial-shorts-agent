@@ -1,7 +1,6 @@
 from editorial_shorts_agent.clustering import LexicalTopicClusterer
 from editorial_shorts_agent.domain import TrendStage
 from editorial_shorts_agent.scoring import WeightedOpportunityScorer
-
 from tests.factories import trend_video
 
 

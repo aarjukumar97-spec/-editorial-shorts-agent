@@ -1,5 +1,4 @@
 from editorial_shorts_agent.clustering import LexicalTopicClusterer
-
 from tests.factories import trend_video
 
 

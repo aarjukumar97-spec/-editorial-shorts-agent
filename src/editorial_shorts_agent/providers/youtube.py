@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from typing import Any
+import typing
 
 import httpx
 
@@ -100,7 +100,9 @@ class YouTubeTrendProvider:
         return [self._parse_item(item, region, observed_at) for item in body.get("items", [])]
 
     @staticmethod
-    def _parse_item(item: dict[str, Any], region: Region, observed_at) -> TrendVideo:
+    def _parse_item(
+        item: dict[str, typing.Any], region: Region, observed_at
+    ) -> TrendVideo:
         snippet = item.get("snippet", {})
         statistics = item.get("statistics", {})
         details = item.get("contentDetails", {})

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import math
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from editorial_shorts_agent.clustering import TopicSeed
 from editorial_shorts_agent.domain import OpportunityScore, TopicOpportunity, TrendStage
@@ -26,7 +26,7 @@ class WeightedOpportunityScorer:
         if not seeds:
             return []
 
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         raw_velocities: list[float] = []
         raw_popularity: list[float] = []
 
