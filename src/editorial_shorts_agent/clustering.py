@@ -8,7 +8,6 @@ from uuid import NAMESPACE_URL, UUID, uuid5
 
 from editorial_shorts_agent.domain import Region, TrendVideo
 
-
 _TOKEN_PATTERN = re.compile(r"[^\w]+", flags=re.UNICODE)
 _STOPWORDS = {
     "about",
