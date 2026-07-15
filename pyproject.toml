@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "editorial-shorts-agent"
+version = "0.1.0"
+description = "Region-aware editorial opportunity pipeline for source-tracked short-form video production."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiosqlite>=0.21,<1",
+    "asyncpg>=0.30,<1",
+    "fastapi>=0.139,<1",
+    "httpx>=0.28,<1",
+    "pydantic>=2.13,<3",
+    "pydantic-settings>=2.10,<3",
+    "sqlalchemy>=2.0,<3",
+    "uvicorn[standard]>=0.35,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9,<10",
+    "pytest-asyncio>=1,<2",
+    "ruff>=0.15,<1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/editorial_shorts_agent"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "RUF", "SIM", "UP"]
