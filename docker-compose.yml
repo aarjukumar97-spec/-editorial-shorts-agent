@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: editorial_shorts
+      POSTGRES_USER: editorial
+      POSTGRES_PASSWORD: editorial-local-only
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U editorial -d editorial_shorts"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    ports:
+      - "5432:5432"
+    volumes:
+      - editorial-postgres:/var/lib/postgresql/data
+
+  api:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ESA_ENVIRONMENT: local
+      ESA_DATABASE_URL: postgresql+asyncpg://editorial:editorial-local-only@postgres:5432/editorial_shorts
+      ESA_TREND_PROVIDER: ${ESA_TREND_PROVIDER:-fixture}
+      ESA_YOUTUBE_API_KEY: ${ESA_YOUTUBE_API_KEY:-}
+    ports:
+      - "8000:8000"
+
+volumes:
+  editorial-postgres:
