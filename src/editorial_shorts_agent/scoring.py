@@ -44,8 +44,7 @@ class WeightedOpportunityScorer:
 
         for index, seed in enumerate(seeds):
             ages = [
-                max((now - video.published_at).total_seconds() / 3600, 0.0)
-                for video in seed.videos
+                max((now - video.published_at).total_seconds() / 3600, 0.0) for video in seed.videos
             ]
             freshness = sum(math.exp(-age / 72) for age in ages) / len(ages)
             unique_channels = len({video.channel_id for video in seed.videos})

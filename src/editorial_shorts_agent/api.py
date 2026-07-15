@@ -54,9 +54,7 @@ def _build_provider(settings: Settings) -> TrendProvider:
         return FixtureTrendProvider()
     api_key = settings.youtube_api_key
     if api_key is None or not api_key.get_secret_value().strip():
-        raise RuntimeError(
-            "ESA_YOUTUBE_API_KEY is required when ESA_TREND_PROVIDER=youtube"
-        )
+        raise RuntimeError("ESA_YOUTUBE_API_KEY is required when ESA_TREND_PROVIDER=youtube")
     return YouTubeTrendProvider(
         api_key=api_key.get_secret_value(),
         timeout_seconds=settings.youtube_timeout_seconds,
@@ -130,9 +128,7 @@ def create_app(
         response_model=DiscoveryRun,
         tags=["discovery"],
     )
-    async def get_discovery_run(
-        run_id: UUID, current: ContainerDependency
-    ) -> DiscoveryRun:
+    async def get_discovery_run(run_id: UUID, current: ContainerDependency) -> DiscoveryRun:
         run = await current.discovery_service.get_run(run_id)
         if run is None:
             raise HTTPException(status_code=404, detail="Discovery run not found")

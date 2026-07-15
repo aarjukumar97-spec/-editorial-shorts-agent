@@ -81,9 +81,7 @@ class SqlAlchemyDiscoveryRunRepository:
 
     async def get(self, run_id: UUID) -> DiscoveryRun | None:
         async with self._sessions() as session:
-            statement = select(DiscoveryRunRow).where(
-                DiscoveryRunRow.run_id == str(run_id)
-            )
+            statement = select(DiscoveryRunRow).where(DiscoveryRunRow.run_id == str(run_id))
             row = (await session.execute(statement)).scalar_one_or_none()
             if row is None:
                 return None

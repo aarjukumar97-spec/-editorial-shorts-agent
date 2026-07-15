@@ -4,7 +4,6 @@ import re
 import typing
 
 import httpx
-
 from editorial_shorts_agent.domain import Region, TrendVideo, utc_now
 
 
@@ -100,9 +99,7 @@ class YouTubeTrendProvider:
         return [self._parse_item(item, region, observed_at) for item in body.get("items", [])]
 
     @staticmethod
-    def _parse_item(
-        item: dict[str, typing.Any], region: Region, observed_at
-    ) -> TrendVideo:
+    def _parse_item(item: dict[str, typing.Any], region: Region, observed_at) -> TrendVideo:
         snippet = item.get("snippet", {})
         statistics = item.get("statistics", {})
         details = item.get("contentDetails", {})

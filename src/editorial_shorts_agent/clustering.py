@@ -4,7 +4,7 @@ import re
 import unicodedata
 from collections import Counter
 from dataclasses import dataclass, field
-from uuid import UUID, NAMESPACE_URL, uuid5
+from uuid import NAMESPACE_URL, UUID, uuid5
 
 from editorial_shorts_agent.domain import Region, TrendVideo
 
