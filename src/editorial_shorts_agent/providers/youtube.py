@@ -4,6 +4,7 @@ import re
 import typing
 
 import httpx
+
 from editorial_shorts_agent.domain import Region, TrendVideo, utc_now
 
 _DURATION = re.compile(
